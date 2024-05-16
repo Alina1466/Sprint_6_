@@ -1,10 +1,7 @@
 import allure
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 from page_objects.header_page import HeaderPage
-from page_objects.order_page import OrderPage
 from conftest import driver
-from URLs import URL
+from url_s import URL
 
 
 class TestClickLogo:
@@ -15,10 +12,7 @@ class TestClickLogo:
     def test_check_working_yandex_logo(self, driver):
         header_page = HeaderPage(driver)
         header_page.click_on_yandex_logo()
-        window = driver.window_handles
-        second_window_handle = window[1]
-        driver.switch_to.window(second_window_handle)
-        WebDriverWait(driver, 3).until(expected_conditions.url_contains('https://dzen.ru/'))
+        header_page.wait_until_new_window_is_open(driver, URL.dzen_page_url)
         url_new_page = driver.current_url
 
         assert url_new_page == URL.dzen_page_url
@@ -28,11 +22,7 @@ class TestClickLogo:
         'Проверяем то, что если кликнуть на логотип «Самоката», попадёшь на главную страницу «Самоката».')
     def test_check_working_scooter_logo(self, driver):
         header_page = HeaderPage(driver)
-        order_page = OrderPage(driver)
-
-        order_page.click_order_header_btn()
-        order_url = driver.current_url
         header_page.click_on_scooter_logo()
-        home_url = driver.current_url
+        url_new_page = driver.current_url
 
-        assert order_url != home_url
+        assert url_new_page == URL.scooter_page_url

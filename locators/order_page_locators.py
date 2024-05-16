@@ -25,3 +25,4 @@ class PageOrderLocators:
     yes_btn_in_modal = (By.XPATH, './/button[text()="Да"]') # Кнопка "ДА" подтверждения оформления заказа во всплывающем окне
     order_completed_modal = (By.XPATH, './/*[contains(@class,"Order_ModalHeader")]') # Сообщение о заказе во всплывающем окне
     block_order_info = (By.XPATH, '//div[contains(@class, "Order_Content")]') # Блок оформления заказа с полями для ввода личных данных
+    scooter_samokat = (By.CLASS_NAME, 'class="Header_LogoScooter__3lsAR"')  # Логотип Самоката на главной странице

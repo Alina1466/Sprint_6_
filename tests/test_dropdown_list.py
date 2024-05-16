@@ -1,7 +1,6 @@
 import allure
 import pytest
 from user_data import Info
-from locators.home_page_locators import HomeLocators
 from page_objects.home_page import HomePage
 from conftest import driver
 
@@ -23,8 +22,8 @@ class TestDropDownList:
     def test_check_answers(self, driver, index, text_of_answer):
         home_page = HomePage(driver)
         home_page.click_cookie_button()
-        home_page.scroll_to_element(HomeLocators.home_subtitle)
-        question = home_page.tap_question(HomeLocators.cell_question, index)
-        result = home_page.find_answer(HomeLocators.cell_answer, index)
+        home_page.scroll_to_element(HomePage.home_subtitle)
+        question = home_page.tap_question(HomePage.cell_question, index)
+        result = home_page.find_answer(HomePage.cell_answer, index)
 
         assert text_of_answer[question] == result

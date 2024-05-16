@@ -2,6 +2,7 @@ import allure
 import pytest
 from user_data import Info
 from page_objects.order_page import OrderPage
+from page_objects.home_page import HomePage
 from conftest import driver
 
 
@@ -11,7 +12,8 @@ class TestOrderScooter:
     @pytest.mark.parametrize('name, surname, address, metro, number', [*Info.personal_date])
     def test_push_order_header_btn(self, driver, name, surname, address, metro, number):
         order_page = OrderPage(driver)
-        order_page.click_cookie_button()
+        home_page = HomePage(driver)
+        home_page.click_cookie_button()
         order_page.click_order_header_btn()
         order_page.filling_personal_date_action(name, surname, address, metro, number)
         text_order = order_page.check_congratulation_modal()
@@ -23,7 +25,8 @@ class TestOrderScooter:
     @pytest.mark.parametrize('name, surname, address, metro, number', [*Info.personal_date])
     def test_push_order_lower_btn(self, driver, name, surname, address, metro, number):
         order_page = OrderPage(driver)
-        order_page.click_cookie_button()
+        home_page = HomePage(driver)
+        home_page.click_cookie_button()
         order_page.click_order_lower_btn()
         order_page.filling_personal_date_action(name, surname, address, metro, number)
         text_order = order_page.check_congratulation_modal()

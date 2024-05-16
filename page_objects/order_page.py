@@ -69,3 +69,8 @@ class OrderPage(BasePage):
     def check_congratulation_modal(self):
         locator = self.wait_element(PageOrderLocators.order_completed_modal)
         return locator.text
+
+    @allure.step('Кликнуть на кнопку "Самокат"')
+    def click_on_scooter_button(self):
+        self.click(HeaderPageLocators.logo_scooter_header)
+        return self.get_text_element(PageOrderLocators.scooter_samokat)
