@@ -8,22 +8,12 @@ from conftest import driver
 class TestDropDownList:
     @allure.title('Тест открытия ответов на главной странице "Вопросы о важном"')
     @allure.description('Клик по вопросам по очереди, нажимая на стрелку - открываются ответы на вопросы')
-    @pytest.mark.parametrize("index, text_of_answer",
-                             [
-                                 (0, Info.text[0]),
-                                 (1, Info.text[1]),
-                                 (2, Info.text[2]),
-                                 (3, Info.text[3]),
-                                 (4, Info.text[4]),
-                                 (5, Info.text[5]),
-                                 (6, Info.text[6]),
-                                 (7, Info.text[7])
-                             ])
-    def test_check_answers(self, driver, index, text_of_answer):
+    @pytest.mark.parametrize("index, text_of_answer", Info.answers,)
+
+    def test_faq(self, driver, index, text_of_answer):
         home_page = HomePage(driver)
         home_page.click_cookie_button()
-        home_page.scroll_to_element(HomePage.home_subtitle)
-        question = home_page.tap_question(HomePage.cell_question, index)
-        result = home_page.find_answer(HomePage.cell_answer, index)
+        home_page.scroll_to_element()
+        home_page.click_question(index)
 
-        assert text_of_answer[question] == result
+        assert home_page.get_answer(index) == text_of_answer
