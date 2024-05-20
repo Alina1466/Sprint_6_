@@ -2,6 +2,7 @@ import allure
 import pytest
 from user_data import Info
 from page_objects.home_page import HomePage
+from page_objects.base_page import BasePage
 from conftest import driver
 
 
@@ -12,8 +13,9 @@ class TestDropDownList:
 
     def test_faq(self, driver, index, text_of_answer):
         home_page = HomePage(driver)
+        base_page = BasePage(driver)
         home_page.click_cookie_button()
-        home_page.scroll_to_element()
+        base_page.scroll_to_element()
         home_page.click_question(index)
 
         assert home_page.get_answer(index) == text_of_answer
