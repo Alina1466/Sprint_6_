@@ -10,11 +10,6 @@ class HomePage(BasePage):
         self.find_element(HomePageLocators.COCOKIES_BTN)
         self.click(HomePageLocators.COCOKIES_BTN)
 
-   # @allure.step('Скроллим к локатору')
-    #def scroll_to_element(self,):
-     #   self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-
     @allure.step('Нажать на вопрос')
     def click_question(self, number):
         method, locator = HomePageLocators.CELL_QUESTION
